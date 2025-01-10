@@ -1,0 +1,193 @@
+<div class="w3-container">
+<!--  SEZIONE CLASSROOMS-->
+  <div class="w3-row w3-margin">
+    <div class="w3-col l4">
+      <p>prova</p>
+    </div>
+    <div class="w3-col l4">
+      <div>
+        <table class="w3-table w3-center">
+          <tr>
+            <th>
+              year
+            </th>
+            <th>
+              section
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tr>
+            <td>
+              <input type="text" [(ngModel)]="classroomToInsert.year">
+            </td>
+            <td>
+              <input type="text" [(ngModel)]="classroomToInsert.section">
+            </td>
+            <td>
+              <button (click)="salvaClassroom()">Salva classe</button>
+            </td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="w3-row w3-center" id="row-classroom">
+      <table class="w3-table w3-striped w3-bordered w3-margin">
+        <tr>
+          <th><p>ID</p></th>
+          <th><p>YEAR</p></th>
+          <th><p>SECTION</p></th>
+        </tr>
+        <tr *ngFor="let c of classrooms$ | async">
+          <td>{{c.id}}</td>
+          <td>{{c.year}}</td>
+          <td>{{c.section}}</td>
+          <td>
+            <button class="w3-button w3-red" (click)="eliminaClassroom(c.id!)">Elimina classe</button>
+          </td>
+        </tr>
+      </table>
+  </div>
+
+<!--  SEZIONE TEACHERS-->
+  <div class="w3-row w3-margin">
+    <div class="w3-col l4">
+      <p>prova</p>
+    </div>
+    <div class="w3-col l4">
+      <table class="w3-table w3-center">
+        <tr>
+          <th>
+            name
+          </th>
+          <th>
+            surname
+          </th>
+          <th>
+            Birthday
+          </th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr>
+          <td>
+            <input type="text" [(ngModel)]="teacherToInsert.name">
+          </td>
+          <td>
+            <input type="text" [(ngModel)]="teacherToInsert.surname">
+          </td>
+          <td>
+            <input type="date" [(ngModel)]="teacherToInsert.birthDate">
+          </td>
+          <td>
+            <button (click)="salvaTeacher()">Salva teacher</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="w3-row w3-center" id="row-teacher">
+    <table class="w3-table w3-striped w3-bordered w3-margin">
+      <tr>
+        <th><p>ID</p></th>
+        <th><p>NAME</p></th>
+        <th><p>SURNAME</p></th>
+        <th><p>BIRTHDAY</p></th>
+        <th><p>CLASSES</p></th>
+      </tr>
+      <tr *ngFor="let c of teachers$ | async; trackBy: trackById">
+        <td>{{c.id }}</td>
+        <td>{{c.name}}</td>
+        <td>{{c.surname}}</td>
+        <td>{{c.birthDate}}</td>
+        <td>{{getClassroomsAsString(c.classrooms)}} </td>
+        <td><button class="w3-button w3-red" (click)="eliminaTeacher(c.id!)">Elimina insegnante</button></td>
+      </tr>
+    </table>
+  </div>
+
+
+  <div class="w3-row w3-margin">
+    <div class="w3-col l4"> <p>prova</p></div>
+    <div class="w3-col l4">
+      <table class="w3-table">
+        <tr>
+          <th>Teacher ID</th>
+          <th>Classroom ID</th>
+        </tr>
+        <tr>
+          <td>
+            <input type="text" [(ngModel)]="teacherId">
+          </td>
+          <td>
+            <input type="text" [(ngModel)]="classroomId">
+          </td>
+          <td><button (click)="collega_teacher_classroom()">Invia!</button></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+
+
+  <div class="w3-row w3-margin">
+    <div class="w3-col l4">
+      <p>prova</p>
+    </div>
+    <div class="w3-col l4">
+      <table class="w3-table">
+        <tr>
+          <th>
+            <p>Name</p>
+          </th>
+          <th>
+            <p>Surname</p>
+          </th>
+          <th>
+            <p>Birthday</p>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <input type="text" [(ngModel)]="studentToInsert.name">
+          </td>
+          <td>
+            <input type="text" [(ngModel)]="studentToInsert.surname">
+          </td>
+          <td>
+            <input type="date" [(ngModel)]="studentToInsert.birthDate">
+          </td>
+          <td>
+            <button (click)="salvaStudente()">Salva Studente</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="w3-row w3-margin">
+    <table class="w3-table w3-striped w3-bordered w3-margin">
+      <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>surname</th>
+        <th>birthdate</th>
+        <th>grades</th>
+        <th>classroom</th>
+      </tr>
+      <tr *ngFor="let s of students$ | async">
+        <td>{{ s.id }}</td>
+        <td>{{ s.name }}</td>
+        <td>{{ s.surname }}</td>
+        <td>{{ s.birthDate }}</td>
+        <td>{{ s.grades }}</td>
+        <td>{{ s.classrooms }}</td>
+        <td>
+          <button class="w3-button w3-red" (click)="eliminaStudente(s.id!)">Elimina studente</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
