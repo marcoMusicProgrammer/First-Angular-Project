@@ -16,14 +16,14 @@ import {Student} from '../../models/Student';
     AsyncPipe
   ],
   templateUrl: './classroom-view.component.html',
+  standalone: true,
   styleUrl: './classroom-view.component.css'
 })
 export class ClassroomViewComponent {
-  classrooms$ = new BehaviorSubject <Classroom[]>([])
-  teachers$ = new BehaviorSubject <Teacher[]>([])
-  teacherAndClassroom$ = new BehaviorSubject <(Teacher | Classroom)[]>([])
-  students$ = new BehaviorSubject<Student[]>([]);
-
+  classrooms$       = new BehaviorSubject <Classroom[]>([])
+  teachers$         = new BehaviorSubject <Teacher[]>([])
+  teacherAndClassroom$= new BehaviorSubject <(Teacher | Classroom)[]>([])
+  students$         = new BehaviorSubject<Student[]>([]);
 
   constructor(private http:HttpClient)
   {
@@ -38,11 +38,11 @@ export class ClassroomViewComponent {
     this.http.get<Student[]>("api/student").subscribe(
       response => this.students$.next(response)
     )
-
   }
 
   trackById(index: number, item: Teacher): number {
     return item.id!;
+    //prova
   }
 
   classroomToInsert: Classroom = {year:0,section:"",students:[],teachers:[]}

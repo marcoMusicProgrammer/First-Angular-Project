@@ -6,6 +6,7 @@ import {ClassroomViewComponent} from './components/classroom-view/classroom-view
   selector: 'app-root',
   imports: [RouterOutlet, ClassroomViewComponent],
   templateUrl: './app.component.html',
+  standalone: true,
   styleUrl: './app.component.css'
 })
 export class AppComponent {
